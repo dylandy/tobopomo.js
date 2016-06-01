@@ -1,6 +1,7 @@
 #tobopomo.js
 
 一個簡單的注音對應插件：將輸入的字串轉成對應的注音回傳
+
 A simple bopomo interpreter: simply mapping the input string to bopomo script.
 
 ##使用方式
