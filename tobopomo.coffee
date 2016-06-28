@@ -1,3 +1,5 @@
+tsi = require("./data/tsi.json")
+
 root = global ? this
 layout =
 	"31": "\n",    "32": " ",    "33": "!",    "34": "\"",    "35": "#",
@@ -24,3 +26,7 @@ root.tobopomo = (string) ->
       output.push string[i]
 
   output.join("")
+
+root.tokanji = (string) ->
+	reader = new FileReader()
+

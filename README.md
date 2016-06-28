@@ -28,6 +28,9 @@ tobopomo("su3cl3a8 "); //  "ㄋ一ˇㄏㄠˇㄇㄚ "
 
 Sample code is in template folder.
 
+##Credit
+
+Thanks for chewing team and libchewing's help. Without them this project wouldn't be successed.
 
 ##LICENSE
-This project is licensed under MIT License. For furthor detail please checkout LICENSE.md or connect with me dylandy.chang at gmail.com.
+This project is licensed under LGPL License. For furthor detail please checkout LICENSE.md or connect with me dylandy.chang at gmail.com.
