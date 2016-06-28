@@ -1,35 +1,34 @@
+#!/usr/bin/env ruby
 require "json"
 
-#temp = []
+temp = []
 
 raw = File.open("../data/tsi.src", "r")
-#raw.each_line do |i|
-#  temp << i.split(" ")
-#end
+raw.each_line do |line|
+  temp << line.split(" ")
+end
 
 puts "temp size=#{temp.size}"
 
 output = {}
-temp.each_with_index do |i , index|
+temp.each_with_index do |line , index|
   puts "temp[#{index}]"
-  if i.size > 3
-    tmp = []
+  if line.count > 3 && output[line[2..-1].join("")].nil?
+    collect = []
     temp[index..-1].each do |j|
-      if j[2..-1].join("") == i[2..-1].join("")
-        tmp << j[0]
+      if j[2..-1].join("") == line[2..-1].join("") && j.count > 3
+        collect << j[0]
       end
     end
-    output[i[2..-1].join("").chomp] = tmp 
-    #puts "#{i[2..-1].join("").chomp} => #{output[i[2..-1].join("").chomp]}"
-  else
-    tmp = []
+    output[line[2..-1].join("")] = collect 
+  elsif line.count == 3 && outuput[line[2]].nil?
+    collect = []
     temp[index..-1].each do |j|
-      if j[2] == i[2]
-        tmp << j[0]
+      if j[2] == line[2] && j.count == 3
+        collect << j[0]
       end
     end
-    output[i[2].chomp] = tmp 
-    #puts "#{i[2].chomp} => #{output[i[2].chomp]}"
+    output[line[2]] = collect 
   end
 end
 
