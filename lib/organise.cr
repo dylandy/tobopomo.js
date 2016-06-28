@@ -2,32 +2,33 @@ require "json"
 
 temp = [] of Array(String)
 
-File.each_line("../data/tsi.src") do |i|
-  temp << i.split(" ")
+File.each_line("../data/tsi.src") do |line|
+  temp << line.split(" ")
 end
 
 
 output = {} of String => Array(String) 
-temp.each_with_index do |i , index|
+
+temp.each_with_index do |line , index|
   puts "temp[#{index}]"
-  if i.size > 3 && !output[i[2..-1].join("").chomp]?
-    tmp = [] of String 
-    temp[index..-1].each do |j|
-      if j[2..-1].join("") == i[2..-1].join("") && i.size > 3
-        tmp << j[0]
+  if line.size > 3 && !output[line[2..-1].join("").chomp]?
+    puts  line[2..-1].join(" ").chomp
+    collect = [] of String 
+    temp[index..-1].each do |inner|
+      if inner[2..-1].join("") == line[2..-1].join("") && line.size > 3
+        collect << inner[0]
       end
     end
-    output[i[2..-1].join("").chomp] =  tmp
-    #puts "#{i[2..-1].join("").chomp} => #{output[i[2..-1].join("").chomp]}"
-  elsif i.size == 3 && !output[i[2].chomp]?
-    tmp = [] of String 
-    temp[index..-1].each do |j|
-      if j[2] == i[2] && i == 3
-        tmp << j[0]
+    output[line[2..-1].join("").chomp] =  collect
+  elsif line.size == 3 && !output[line[2].chomp]?
+    puts line[2].chomp
+    collect = [] of String 
+    temp[index..-1].each do |inner|
+      if inner[2] == line[2] && line.size == 3
+        collect << inner[0]
       end
     end
-    output[i[2].chomp] = tmp
-    #puts "#{i[2].chomp} => #{output[i[2].chomp]}"
+    output[line[2].chomp] = collect
   end
 end
 
