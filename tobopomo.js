@@ -94,8 +94,9 @@
   };
 
   root.tokanji = function(string) {
-    var reader;
-    return reader = new FileReader();
+    if (tsi[string]) {
+      return tsi[string];
+    }
   };
 
 }).call(this);

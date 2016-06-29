@@ -28,5 +28,6 @@ root.tobopomo = (string) ->
   output.join("")
 
 root.tokanji = (string) ->
-	reader = new FileReader()
-
+  if tsi[string]
+    return tsi[string]
+  
