@@ -1,0 +1,54 @@
+#!/usr/bin/env ruby
+require "json"
+
+temp = []
+
+raw = File.open("../data/tsi.src", "r")
+raw.each_line do |line|
+  temp << line.split(" ")
+end
+
+puts "temp size=#{temp.size}"
+
+output = {}
+temp.each_with_index do |line , index|
+  puts "temp[#{index}]"
+  if line.count > 3 && output[line[2..-1].join("")].nil?
+    collect = []
+    temp[index..-1].each do |j|
+      if j[2..-1].join("") == line[2..-1].join("") && j.count > 3
+        item = []
+        item << j[0]
+        item << j[1].to_i
+        collect << item 
+      end
+    end
+
+    collect.sort_by!{ |i| -i[1] } # sorting by frequency descending order
+    to_output = []                # remapping output format and remove frequency column
+    collect.each{ |i| to_output << i[0] }
+    collect = to_output
+    output[line[2..-1].join("")] = collect 
+
+  elsif line.count == 3 && output[line[2]].nil?
+    collect = []
+    temp[index..-1].each do |j|
+      if j[2] == line[2] && j.count == 3
+        item = []
+        item << j[0]
+        item << j[1].to_i
+        collect << item 
+      end
+    end
+
+    collect.sort_by!{ |i| -i[1] } # sorting by frequency descending order
+    to_output = []                # remapping output format and remove frequency column
+    collect.each{ |i| to_output << i[0] }
+    collect = to_output
+    output[line[2]] = collect 
+  end
+end
+
+File.open("../data/tsi.test.json", "w") do |f|
+  f.write(output.to_json) 
+end

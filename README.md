@@ -29,8 +29,8 @@ tokanji("ㄋ一ˇㄏㄠˇㄇㄚ "); // ["你好嗎"]
 - [] 字重排比
 - [] 不同語言實作
 - [] 建立成 node module 
+- [ ] 使用 crystal 加速資料分類
 
-Sample code is in template folder.
 
 ##Credit
 
