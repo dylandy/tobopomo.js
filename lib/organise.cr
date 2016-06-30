@@ -7,7 +7,7 @@ File.each_line("../data/tsi.src") do |line|
 end
 
 
-output = {} of String => Array(Array(String))
+output = {} of String => Array(String)
 
 temp.each_with_index do |line , index|
   puts "temp[#{index}]"

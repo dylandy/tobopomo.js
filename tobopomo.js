@@ -8,7 +8,7 @@
 
   layout = {
     "31": "\n",
-    "32": " ",
+    "32": "",
     "33": "!",
     "34": "\"",
     "35": "#",
@@ -76,18 +76,19 @@
     "123": "{",
     "124": "|",
     "125": "}",
-    "126": "~",
-    "127": ""
+    "126": "~"
   };
 
   root.tobopomo = function(string) {
     var i, j, output, ref;
     output = [];
     for (i = j = 0, ref = string.length; 0 <= ref ? j < ref : j > ref; i = 0 <= ref ? ++j : --j) {
-      if (layout[string[i].charCodeAt(0)]) {
-        output.push(layout[string[i].charCodeAt(0)]);
-      } else {
-        output.push(string[i]);
+      if (string[i].charCodeAt(0) !== 32) {
+        if (layout[(string[i].charCodeAt(0)).toString()]) {
+          output.push(layout[(string[i].charCodeAt(0)).toString()]);
+        } else {
+          output.push(string[i]);
+        }
       }
     }
     return output.join("");

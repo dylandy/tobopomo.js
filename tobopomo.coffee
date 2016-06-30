@@ -2,7 +2,7 @@ tsi = require("./data/tsi.json")
 
 root = global ? this
 layout =
-	"31": "\n",    "32": " ",    "33": "!",    "34": "\"",    "35": "#",
+	"31": "\n",    "32": "",    "33": "!",    "34": "\"",    "35": "#",
 	"36": "$",    "37": "%",    "38": "&",    "39": "'",    "40": "(",
 	"41": ")",    "42": "*",    "43": "+",    "44": "ㄝ",    "45": "ㄦ",
 	"46": "ㄡ",    "47": "ㄥ",    "48": "ㄢ",    "49": "ㄅ",    "50": "ㄉ",
@@ -16,14 +16,16 @@ layout =
 	"111": "ㄟ",    "112": "ㄣ",    "113": "ㄆ",    "114": "ㄐ",    "115": "ㄋ",
 	"116": "ㄔ",    "117": "ㄧ",    "118": "ㄒ",    "119": "ㄊ",    "120": "ㄌ",
 	"121": "ㄗ",    "122": "ㄈ",    "123": "{",    "124": "|",    "125": "}",
-	"126": "~",    "127": ""
+	"126": "~"
+ 
 root.tobopomo = (string) ->
   output = []
   for i in [0...string.length]
-    if layout[string[i].charCodeAt(0)]
-      output.push layout[string[i].charCodeAt(0)]
-    else
-      output.push string[i]
+    if string[i].charCodeAt(0) != 32
+      if layout[(string[i].charCodeAt(0)).toString()] 
+          output.push layout[(string[i].charCodeAt(0)).toString()]
+      else
+        output.push string[i]
 
   output.join("")
 
