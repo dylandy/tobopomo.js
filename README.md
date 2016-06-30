@@ -25,10 +25,10 @@ tokanji("ㄋ一ˇㄏㄠˇㄇㄚ "); // ["你好嗎"]
 
 ###TODO
 
-- [] 切字功能
-- [] 字重排比
-- [] 不同語言實作
-- [] 建立成 node module 
+- [ ] 切字功能
+- [ ] 字重排比
+- [ ] 不同語言實作
+- [ ] 建立成 node module 
 
 Sample code is in template folder.
 
