@@ -21,6 +21,19 @@ layout =
 normalise = (string) ->
   string.replace(/ /g,'')
 
+#the string reverse function
+#reverse = (s) -> if s.length < 2 then s else reverse(s[1..-1]) + s[0]
+
+root.word_seperater = (string) ->
+#  output = []
+#  traversed = 1
+#  splitted_string = string.split(/["ˊ"|"ˇ"|"ˋ"|"˙"]/)
+#  for i in splitted_string
+#    if tsi[i + string[traversed + i.length]].length > 1
+#      output.push tsi[i + string[traversed + i.length]][0]
+#      i + string[traversed + i.length]
+#  console.log output
+
 root.tobopomo = (string) ->
   string = normalise(string)
   output = []
@@ -49,7 +62,8 @@ root.tokanji = (string) ->
       temp.push tsi[string[last..i]]
       output.push temp
 
-  #for i in [0...temp.length]
-    
   return output
   
+# add method to string for easy calling 
+String::tobopomo = -> tobopomo(@)
+String::tokanji = -> tokanji(@)

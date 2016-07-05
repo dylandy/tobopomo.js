@@ -82,6 +82,8 @@
     return string.replace(/ /g, '');
   };
 
+  root.word_seperater = function(string) {};
+
   root.tobopomo = function(string) {
     var i, j, output, ref;
     string = normalise(string);
@@ -117,6 +119,14 @@
       }
     }
     return output;
+  };
+
+  String.prototype.tobopomo = function() {
+    return tobopomo(this);
+  };
+
+  String.prototype.tokanji = function() {
+    return tokanji(this);
   };
 
 }).call(this);
