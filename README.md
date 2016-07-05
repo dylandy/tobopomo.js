@@ -19,14 +19,14 @@ require("[path_to_script]/tobopomo.js")
 This plugin provide two functions for you to trasform romaji to bopomo script or translate bopomo script to Chinese characters.
 There are two methods to using this plugin.
 
-1 Normal function call.
+1.Normal function call.
 ```
 tobopomo("su3cl3a8 "); //  "ㄋ一ˇㄏㄠˇㄇㄚ"
 
 tokanji("ㄋ一ˇㄏㄠˇㄇㄚ "); // ["你好嗎"]
 
 ```
-2 You can call the methods by using strings itself.
+2.You can call the methods by using strings itself.
 
 ```
 "su3cl3a8 ".tobopomo(); // "ㄋ一ˇㄏㄠˇㄇㄚ"
