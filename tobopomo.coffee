@@ -25,14 +25,30 @@ normalise = (string) ->
 #reverse = (s) -> if s.length < 2 then s else reverse(s[1..-1]) + s[0]
 
 root.word_seperater = (string) ->
-#  output = []
-#  traversed = 1
-#  splitted_string = string.split(/["ˊ"|"ˇ"|"ˋ"|"˙"]/)
-#  for i in splitted_string
-#    if tsi[i + string[traversed + i.length]].length > 1
-#      output.push tsi[i + string[traversed + i.length]][0]
-#      i + string[traversed + i.length]
-#  console.log output
+  string = normalise(string)
+  #console.log string
+  output = []
+  total = 0
+  traversed = 0
+  temp = ""
+  splitted_string = string.split(/["ˊ"|"ˇ"|"ˋ"|"˙"]/)
+
+  for i , index in splitted_string
+    total = total + i.length
+    if index == 0
+      if tsi[i+string[i.length]] == undefined || tsi[i+string[i.length]][0].length > 1
+        console.log i
+      else if tsi[i+string[index+i.length]][0].length == 1
+        output.push i+string[index+i.length]
+    else if string[index+total] == undefined  #last one is first sound
+      console.log i
+    else
+      console.log i+string[index+total]
+      if tsi[i+string[index+total]] == undefined ||tsi[i+string[index+total]][0].length > 1
+        console.log i
+      else if tsi[i+string[index + total]][0].length == 1
+        output.push i+string[index+total]
+  console.log output
 
 root.tobopomo = (string) ->
   string = normalise(string)
@@ -46,23 +62,7 @@ root.tobopomo = (string) ->
 
 root.tokanji = (string) ->
   string = normalise(string)
-  last = 0
-  output = []
-  temp = []
-  for i in [0...string.length]
-    if tsi[string[last..i]] == undefined
-      temp = []
-      temp.push  string[last...i]
-      temp.push tsi[string[last...i]]
-      output.push temp
-      last = i
-    else if i == (string.length - 1)
-      temp = []
-      temp.push string[last..i]
-      temp.push tsi[string[last..i]]
-      output.push temp
-
-  return output
+  tsi[string]
   
 # add method to string for easy calling 
 String::tobopomo = -> tobopomo(@)

@@ -82,7 +82,36 @@
     return string.replace(/ /g, '');
   };
 
-  root.word_seperater = function(string) {};
+  root.word_seperater = function(string) {
+    var i, index, j, len, output, splitted_string, temp, total, traversed;
+    string = normalise(string);
+    output = [];
+    total = 0;
+    traversed = 0;
+    temp = "";
+    splitted_string = string.split(/["ˊ"|"ˇ"|"ˋ"|"˙"]/);
+    for (index = j = 0, len = splitted_string.length; j < len; index = ++j) {
+      i = splitted_string[index];
+      total = total + i.length;
+      if (index === 0) {
+        if (tsi[i + string[i.length]] === void 0 || tsi[i + string[i.length]][0].length > 1) {
+          console.log(i);
+        } else if (tsi[i + string[index + i.length]][0].length === 1) {
+          output.push(i + string[index + i.length]);
+        }
+      } else if (string[index + total] === void 0) {
+        console.log(i);
+      } else {
+        console.log(i + string[index + total]);
+        if (tsi[i + string[index + total]] === void 0 || tsi[i + string[index + total]][0].length > 1) {
+          console.log(i);
+        } else if (tsi[i + string[index + total]][0].length === 1) {
+          output.push(i + string[index + total]);
+        }
+      }
+    }
+    return console.log(output);
+  };
 
   root.tobopomo = function(string) {
     var i, j, output, ref;
@@ -99,26 +128,8 @@
   };
 
   root.tokanji = function(string) {
-    var i, j, last, output, ref, temp;
     string = normalise(string);
-    last = 0;
-    output = [];
-    temp = [];
-    for (i = j = 0, ref = string.length; 0 <= ref ? j < ref : j > ref; i = 0 <= ref ? ++j : --j) {
-      if (tsi[string.slice(last, +i + 1 || 9e9)] === void 0) {
-        temp = [];
-        temp.push(string.slice(last, i));
-        temp.push(tsi[string.slice(last, i)]);
-        output.push(temp);
-        last = i;
-      } else if (i === (string.length - 1)) {
-        temp = [];
-        temp.push(string.slice(last, +i + 1 || 9e9));
-        temp.push(tsi[string.slice(last, +i + 1 || 9e9)]);
-        output.push(temp);
-      }
-    }
-    return output;
+    return tsi[string];
   };
 
   String.prototype.tobopomo = function() {
