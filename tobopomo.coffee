@@ -24,7 +24,7 @@ normalise = (string) ->
 #the string reverse function
 #reverse = (s) -> if s.length < 2 then s else reverse(s[1..-1]) + s[0]
 
-word_seperater = (string) ->
+char_seperater = (string) ->
   string = normalise(string)
   #console.log string
   output = []
@@ -135,5 +135,5 @@ root.tokanji = (input) ->
 # add method to string for easy calling 
 String::tobopomo = -> tobopomo(@)
 String::tokanji = -> tokanji(@)
-String::word_seperater = -> word_seperater(@)
+String::char_seperater = -> char_seperater(@)
 Array::tokanji = -> tokanji(@)
