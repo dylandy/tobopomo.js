@@ -32,23 +32,88 @@ root.word_seperater = (string) ->
   traversed = 0
   temp = ""
   splitted_string = string.split(/["ˊ"|"ˇ"|"ˋ"|"˙"]/)
+  #console.log splitted_string
 
   for i , index in splitted_string
     total = total + i.length
     if index == 0
-      if tsi[i+string[i.length]] == undefined || tsi[i+string[i.length]][0].length > 1
-        console.log i
+      #test string "tobopomo('cl cl j06')"
+      if tsi[i+string[i.length]] == undefined || tsi[i+string[i.length]][0].length > 1    #first element is first tone.
+        if i.length == string.length      # no tone included and all the characters belong in first tone. 
+          for j in [0...i.length]
+            temp = i[traversed..j]
+            if tsi[temp] && tsi[temp][0].length == 1 && j < (i.length - 1)
+              continue
+            else if tsi[temp] && tsi[temp][0].length == 1 && j == (i.length - 1)
+              output.push i[traversed..j]
+            #test string "tobopomo('co i ')"
+            else if tsi[temp] == undefined && j == (i.length - 1)
+              output.push i[traversed...j]
+              output.push i[j]
+            else
+              output.push i[traversed...j]
+              traversed = j
+        else
+          for j in [0...i.length]
+            temp = i[traversed..j]
+            if tsi[temp] && tsi[temp][0].length == 1 && j < (i.length - 1)
+              continue
+            else if tsi[temp] && j == (i.length - 1)
+              output.push i[traversed .. j] + string[index+i.length]
+            else if tsi[temp] == undefined && j == (i.length - 1)
+            #test string "tobopomo('dk y3ru0 ')"
+              output.push i[traversed...j]
+              output.push i[j]+ string[index+i.length]
+            else
+              output.push i[traversed...j]
+              traversed = j
+
       else if tsi[i+string[index+i.length]][0].length == 1
         output.push i+string[index+i.length]
-    else if string[index+total] == undefined  #last one is first sound
-      console.log i
+    #test string "tobopomo('ej94gj gj ')"
+    else if string[index+total] == undefined  #last one is first tone 
+      temp = 0
+      for j in [0...i.length]
+        temp = i[traversed..j]
+        if tsi[temp] && tsi[temp][0].length == 1 && j < (i.length - 1)
+          continue
+        else if tsi[temp] && tsi[temp][0].length == 1 && j == (i.length - 1)
+          output.push i[traversed..j]
+        else if tsi[temp] == undefined && j == (i.length - 1)
+          output.push i[traversed...j]
+          output.push i[j]
+        else
+          output.push i[traversed...j]
+          traversed = j
     else
-      console.log i+string[index+total]
-      if tsi[i+string[index+total]] == undefined ||tsi[i+string[index+total]][0].length > 1
-        console.log i
+      #test string "tobopomo('vul3cjo vu86')"
+      if tsi[i+string[index+total]] == undefined    #last element of the splitted string but has tone symbol at the original string.
+        temp = 0
+        for j in [0...i.length]
+          temp = i[traversed..j]
+          if tsi[temp] && tsi[temp][0].length == 1 && j < (i.length - 1)
+            continue
+          else if  j == (i.length - 1)
+            output.push i[traversed..j] + string[index+total]
+          else
+            output.push i[traversed...j]
+            traversed = j
+      #test string "tobopomo('ji3g4dk vm,6ej94bp6')"
+      else if tsi[i+string[index+total]][0].length > 1
+        temp = 0
+        for j in [0...i.length]
+          temp = i[traversed..j]
+          if tsi[temp] && tsi[temp][0].length == 1 && j < (i.length - 1)
+            continue
+          else if  j == (i.length - 1)
+            output.push i[traversed..j]+ string[index+total]
+          else
+            output.push i[traversed...j]
+            traversed = j
+        #console.log i
       else if tsi[i+string[index + total]][0].length == 1
         output.push i+string[index+total]
-  console.log output
+  return output
 
 root.tobopomo = (string) ->
   string = normalise(string)

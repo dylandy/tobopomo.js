@@ -83,41 +83,108 @@
   };
 
   root.word_seperater = function(string) {
-    var i, index, j, len, output, splitted_string, temp, total, traversed;
+    var i, index, j, k, l, len, m, n, o, output, p, ref, ref1, ref2, ref3, ref4, splitted_string, temp, total, traversed;
     string = normalise(string);
     output = [];
     total = 0;
     traversed = 0;
     temp = "";
     splitted_string = string.split(/["ˊ"|"ˇ"|"ˋ"|"˙"]/);
-    for (index = j = 0, len = splitted_string.length; j < len; index = ++j) {
+    for (index = k = 0, len = splitted_string.length; k < len; index = ++k) {
       i = splitted_string[index];
       total = total + i.length;
       if (index === 0) {
         if (tsi[i + string[i.length]] === void 0 || tsi[i + string[i.length]][0].length > 1) {
-          console.log(i);
+          if (i.length === string.length) {
+            for (j = l = 0, ref = i.length; 0 <= ref ? l < ref : l > ref; j = 0 <= ref ? ++l : --l) {
+              temp = i.slice(traversed, +j + 1 || 9e9);
+              if (tsi[temp] && tsi[temp][0].length === 1 && j < (i.length - 1)) {
+                continue;
+              } else if (tsi[temp] && tsi[temp][0].length === 1 && j === (i.length - 1)) {
+                output.push(i.slice(traversed, +j + 1 || 9e9));
+              } else if (tsi[temp] === void 0 && j === (i.length - 1)) {
+                output.push(i.slice(traversed, j));
+                output.push(i[j]);
+              } else {
+                output.push(i.slice(traversed, j));
+                traversed = j;
+              }
+            }
+          } else {
+            for (j = m = 0, ref1 = i.length; 0 <= ref1 ? m < ref1 : m > ref1; j = 0 <= ref1 ? ++m : --m) {
+              temp = i.slice(traversed, +j + 1 || 9e9);
+              if (tsi[temp] && tsi[temp][0].length === 1 && j < (i.length - 1)) {
+                continue;
+              } else if (tsi[temp] && j === (i.length - 1)) {
+                output.push(i.slice(traversed, +j + 1 || 9e9) + string[index + i.length]);
+              } else if (tsi[temp] === void 0 && j === (i.length - 1)) {
+                output.push(i.slice(traversed, j));
+                output.push(i[j] + string[index + i.length]);
+              } else {
+                output.push(i.slice(traversed, j));
+                traversed = j;
+              }
+            }
+          }
         } else if (tsi[i + string[index + i.length]][0].length === 1) {
           output.push(i + string[index + i.length]);
         }
       } else if (string[index + total] === void 0) {
-        console.log(i);
+        temp = 0;
+        for (j = n = 0, ref2 = i.length; 0 <= ref2 ? n < ref2 : n > ref2; j = 0 <= ref2 ? ++n : --n) {
+          temp = i.slice(traversed, +j + 1 || 9e9);
+          if (tsi[temp] && tsi[temp][0].length === 1 && j < (i.length - 1)) {
+            continue;
+          } else if (tsi[temp] && tsi[temp][0].length === 1 && j === (i.length - 1)) {
+            output.push(i.slice(traversed, +j + 1 || 9e9));
+          } else if (tsi[temp] === void 0 && j === (i.length - 1)) {
+            output.push(i.slice(traversed, j));
+            output.push(i[j]);
+          } else {
+            output.push(i.slice(traversed, j));
+            traversed = j;
+          }
+        }
       } else {
-        console.log(i + string[index + total]);
-        if (tsi[i + string[index + total]] === void 0 || tsi[i + string[index + total]][0].length > 1) {
-          console.log(i);
+        if (tsi[i + string[index + total]] === void 0) {
+          temp = 0;
+          for (j = o = 0, ref3 = i.length; 0 <= ref3 ? o < ref3 : o > ref3; j = 0 <= ref3 ? ++o : --o) {
+            temp = i.slice(traversed, +j + 1 || 9e9);
+            if (tsi[temp] && tsi[temp][0].length === 1 && j < (i.length - 1)) {
+              continue;
+            } else if (j === (i.length - 1)) {
+              output.push(i.slice(traversed, +j + 1 || 9e9) + string[index + total]);
+            } else {
+              output.push(i.slice(traversed, j));
+              traversed = j;
+            }
+          }
+        } else if (tsi[i + string[index + total]][0].length > 1) {
+          temp = 0;
+          for (j = p = 0, ref4 = i.length; 0 <= ref4 ? p < ref4 : p > ref4; j = 0 <= ref4 ? ++p : --p) {
+            temp = i.slice(traversed, +j + 1 || 9e9);
+            if (tsi[temp] && tsi[temp][0].length === 1 && j < (i.length - 1)) {
+              continue;
+            } else if (j === (i.length - 1)) {
+              output.push(i.slice(traversed, +j + 1 || 9e9) + string[index + total]);
+            } else {
+              output.push(i.slice(traversed, j));
+              traversed = j;
+            }
+          }
         } else if (tsi[i + string[index + total]][0].length === 1) {
           output.push(i + string[index + total]);
         }
       }
     }
-    return console.log(output);
+    return output;
   };
 
   root.tobopomo = function(string) {
-    var i, j, output, ref;
+    var i, k, output, ref;
     string = normalise(string);
     output = [];
-    for (i = j = 0, ref = string.length; 0 <= ref ? j < ref : j > ref; i = 0 <= ref ? ++j : --j) {
+    for (i = k = 0, ref = string.length; 0 <= ref ? k < ref : k > ref; i = 0 <= ref ? ++k : --k) {
       if (layout[(string[i].charCodeAt(0)).toString()]) {
         output.push(layout[(string[i].charCodeAt(0)).toString()]);
       } else {
