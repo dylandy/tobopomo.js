@@ -125,11 +125,15 @@ root.tobopomo = (string) ->
       output.push string[i]
   output.join("")
 
-root.tokanji = (string) ->
-  string = normalise(string)
-  tsi[string]
+root.tokanji = (input) ->
+  if Array.isArray(input)
+    console.log input
+  else
+    string = normalise(input)
+    tsi[string]
   
 # add method to string for easy calling 
 String::tobopomo = -> tobopomo(@)
 String::tokanji = -> tokanji(@)
 String::word_seperater = -> word_seperater(@)
+Array::tokanji = -> tokanji(@)

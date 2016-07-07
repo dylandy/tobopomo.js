@@ -194,9 +194,14 @@
     return output.join("");
   };
 
-  root.tokanji = function(string) {
-    string = normalise(string);
-    return tsi[string];
+  root.tokanji = function(input) {
+    var string;
+    if (Array.isArray(input)) {
+      return console.log(input);
+    } else {
+      string = normalise(input);
+      return tsi[string];
+    }
   };
 
   String.prototype.tobopomo = function() {
@@ -209,6 +214,10 @@
 
   String.prototype.word_seperater = function() {
     return word_seperater(this);
+  };
+
+  Array.prototype.tokanji = function() {
+    return tokanji(this);
   };
 
 }).call(this);
