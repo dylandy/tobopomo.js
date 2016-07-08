@@ -232,8 +232,8 @@
     return tobopomo(this);
   };
 
-  String.prototype.tokanji = function() {
-    return tokanji(this);
+  String.prototype.tokanji = function(limit) {
+    return tokanji(this, limit);
   };
 
   Array.prototype.tokanji = function(limit) {

@@ -154,5 +154,5 @@ root.tokanji = (input , limit = 5) ->
   
 # add method to string for easy calling 
 String::tobopomo = -> tobopomo(@)
-String::tokanji = -> tokanji(@)
+String::tokanji =(limit) -> tokanji(@ , limit)
 Array::tokanji =(limit) -> tokanji(@ , limit)
