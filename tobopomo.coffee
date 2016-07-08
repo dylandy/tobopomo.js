@@ -45,7 +45,7 @@ char_seperater = (string) ->
             if tsi[temp] && tsi[temp][0].length == 1 && j < (i.length - 1)
               continue
             else if tsi[temp] && tsi[temp][0].length == 1 && j == (i.length - 1)
-              output.push i[traversed..j]
+              output.push temp
             #test string "tobopomo('co i ')"
             else if tsi[temp] == undefined && j == (i.length - 1)
               output.push i[traversed...j]
@@ -87,6 +87,7 @@ char_seperater = (string) ->
           traversed = j
     else
       #test string "tobopomo('vul3cjo vu86')"
+      #test string "tobopomo('u su06')"
       if tsi[i+string[index+total]] == undefined    #last element of the splitted string but has tone symbol at the original string.
         temp = 0
         for j in [0...i.length]
@@ -94,7 +95,7 @@ char_seperater = (string) ->
           if tsi[temp] && tsi[temp][0].length == 1 && j < (i.length - 1)
             continue
           else if  j == (i.length - 1)
-            output.push i[traversed..j] + string[index+total]
+            output.push temp + string[index+total]
           else
             output.push i[traversed...j]
             traversed = j
@@ -114,16 +115,9 @@ char_seperater = (string) ->
           else
             output.push i[traversed...j]
             traversed = j
-        #console.log i
       else if tsi[i+string[index + total]][0].length == 1
         output.push i+string[index+total]
   return output
-
-
-word_seperater = (array) ->
-  traversed = 0
-  for i in array
-    console.log i
 
 root.tobopomo = (string) ->
   string = normalise(string)
@@ -133,11 +127,27 @@ root.tobopomo = (string) ->
       output.push layout[(string[i].charCodeAt(0)).toString()]
     else
       output.push string[i]
-  output.join("")
+  return char_seperater(output.join(""))
 
-root.tokanji = (input) ->
+root.tokanji = (input , limit = 5) ->
+  traversed = 0
+  output = []
   if Array.isArray(input)
-    console.log input
+    for index in [0...input.length]
+      string = input[traversed..index].join("")
+      if tsi[string] && index < (input.length - 1)
+        continue
+      else if tsi[string] && index == (input.length - 1)
+        output.push tsi[string][0...limit]
+      else if tsi[string] == undefined &&index == (input.length - 1)
+        string = input[traversed...index].join("")
+        output.push tsi[string][0...limit]
+        output.push tsi[input[index]][0...limit]
+      else
+        string = input[traversed...index].join("")
+        output.push tsi[string][0...limit]
+        traversed = index
+    return output
   else
     string = normalise(input)
     tsi[string]
@@ -145,6 +155,4 @@ root.tokanji = (input) ->
 # add method to string for easy calling 
 String::tobopomo = -> tobopomo(@)
 String::tokanji = -> tokanji(@)
-String::char_seperater = -> char_seperater(@)
-Array::tokanji = -> tokanji(@)
-Array::word_seperater = -> word_seperater(@)
+Array::tokanji =(limit) -> tokanji(@ , limit)
