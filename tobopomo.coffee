@@ -99,12 +99,16 @@ char_seperater = (string) ->
             output.push i[traversed...j]
             traversed = j
       #test string "tobopomo('ji3g4dk vm,6ej94bp6')"
+      #test string "tobopomo('ji3ap72. g4cl3q/6u.3')"
       else if tsi[i+string[index+total]][0].length > 1
         temp = 0
         for j in [0...i.length]
           temp = i[traversed..j]
           if tsi[temp] && tsi[temp][0].length == 1 && j < (i.length - 1)
             continue
+          else if tsi[temp] == undefined && j == (i.length - 1)
+            output.push i[traversed...j]
+            output.push i[j]+ string[index+total]
           else if  j == (i.length - 1)
             output.push i[traversed..j]+ string[index+total]
           else
@@ -114,6 +118,12 @@ char_seperater = (string) ->
       else if tsi[i+string[index + total]][0].length == 1
         output.push i+string[index+total]
   return output
+
+
+word_seperater = (array) ->
+  traversed = 0
+  for i in array
+    console.log i
 
 root.tobopomo = (string) ->
   string = normalise(string)
@@ -137,3 +147,4 @@ String::tobopomo = -> tobopomo(@)
 String::tokanji = -> tokanji(@)
 String::char_seperater = -> char_seperater(@)
 Array::tokanji = -> tokanji(@)
+Array::word_seperater = -> word_seperater(@)
