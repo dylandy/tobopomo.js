@@ -150,7 +150,7 @@ root.tokanji = (input , limit = 5) ->
     return output
   else
     string = normalise(input)
-    tsi[string]
+    tsi[string][0...limit]
   
 # add method to string for easy calling 
 String::tobopomo = -> tobopomo(@)

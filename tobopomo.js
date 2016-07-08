@@ -224,7 +224,7 @@
       return output;
     } else {
       string = normalise(input);
-      return tsi[string];
+      return tsi[string].slice(0, limit);
     }
   };
 
