@@ -4,7 +4,12 @@
   "description": "An api for mapping romanji to bopomo script and convert bopomo script to Chinese characters.",
   "main": "tobopomo.js",
   "scripts": {
-    "test": "rake test"
+    "test": "rake test",
+    "prepublish" : "coffee -c tobopomo.coffee"
+  },
+  "dependencies":{
+    "mocha":"latest",
+    "should":"latest"
   },
   "repository": {
     "type": "git",
