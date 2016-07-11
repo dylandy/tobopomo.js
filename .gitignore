@@ -1,3 +1,4 @@
 *.swp
 *.icr*
 node_modules/
+npm-debug.log
