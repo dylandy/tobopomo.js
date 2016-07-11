@@ -9,8 +9,22 @@ Mapping the input string to bopomo script and then turn bopomo script into chine
 ###Include methods
 
 Node
+
+In your package.json 
+
 ```
-require("[path_to_script]/tobopomo.js")
+...
+"dependencies" : {
+  "tobopomo.js":"*",
+},
+...
+
+```
+
+In your code
+
+```
+require("tobopmo.js")
 
 ```
 
