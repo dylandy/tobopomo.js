@@ -4,15 +4,12 @@
 
 Mapping the input string to bopomo script and then turn bopomo script into chinese characters.
 
-##使用方式
-
 ###Installation
 
 ####Install Globally
 
 ```
 sudo npm install -g tobopomo.js
-
 ```
 
 ####Install Locally
@@ -25,14 +22,12 @@ In your package.json
   "tobopomo.js":"*",
 },
 ...
-
 ```
 
 In your code
 
 ```
 require("tobopmo.js")
-
 ```
 
 ###Usage
@@ -49,7 +44,6 @@ tokanji("ㄋ一ˇㄏㄠˇㄇㄚ "); // [ [ '你好嗎', '妳好嗎' ] ]
 tokanji("ㄍㄨˇ"); // [ [ '股', '古', '谷', '鼓', '骨' ] ]  #default output 5 of characters
 
 tokanji("ㄍㄨˇ" , 3); // [ [ '股', '古', '谷' ] ] #if you want to change the output number just simply pass the number as second parameter. 
-
 ```
 2.You can call the methods by using strings itself.
 
