@@ -6,9 +6,16 @@ Mapping the input string to bopomo script and then turn bopomo script into chine
 
 ##使用方式
 
-###Include methods
+###Installation
 
-Node
+####Install Globally
+
+```
+sudo npm install -g tobopomo.js
+
+```
+
+####Install Locally
 
 In your package.json 
 
@@ -66,7 +73,7 @@ tokanji("ㄍㄨˇ" , 3); // [ [ '股', '古', '谷' ] ] #if you want to change t
 - [x] 字重排比
 - [x] 限制輸出數量 
 - [ ] 不同語言實作
-- [ ] 建立成 node module 
+- [x] 建立成 node module 
 
 
 ##Credit
