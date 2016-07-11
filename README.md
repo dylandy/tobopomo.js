@@ -33,8 +33,6 @@ require("tobopmo.js")
 
 You can use the command line tool for simple text search.
 
-###Usage
-
 ```
 options:
   -b : transfrom into Bopomo script
