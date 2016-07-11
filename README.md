@@ -29,6 +29,26 @@ In your code
 ```
 require("tobopmo.js")
 ```
+###Command Line Tool
+
+You can use the command line tool for simple text search.
+
+###Usage
+
+```
+options:
+  -b : transfrom into Bopomo script
+  -k : transfrom into Chinese characters
+  -l : limit the output characters number
+```
+The example command
+
+```
+$tobopomo -b su3cl3a8  #[ 'ㄋㄧˇ', 'ㄏㄠˇ', 'ㄇㄚ' ]
+$tobopomo -k ㄨㄛˇ #[ '我', '捰', '婐', '婑' ]
+$tobopomo -b su3cl3a8 -k #[ [ '你好嗎', '妳好嗎' ] ]
+$tobopomo -b ji3 -k -l 2 #[ [ '我', '捰' ] ]
+```
 
 ###Usage
 

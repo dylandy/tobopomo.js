@@ -1,6 +1,6 @@
 {
   "name": "tobopomo.js",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "An api for mapping romanji to bopomo script and convert bopomo script to Chinese characters.",
   "main": "lib/tobopomo.js",
   "scripts": {
@@ -9,7 +9,11 @@
   },
   "dependencies":{
     "mocha":"*",
-    "chai":"*"
+    "chai":"*",
+    "cli":"*"
+  },
+  "bin":{
+    "tobopomo":"bin/tobopomo.cli.js"
   },
   "repository": {
     "type": "git",
@@ -22,6 +26,7 @@
   ],
   "author": "Dylandy Chang <dylandy.chang@gmail.com> (http://blog.dylandy.tw)",
   "license": "LGPL-3.0",
+  "preferGlobal":true,
   "bugs": {
     "url": "https://github.com/dylandy/tobopomo.js/issues"
   },
