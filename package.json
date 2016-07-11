@@ -8,8 +8,8 @@
     "prepublish" : "coffee -c tobopomo.coffee"
   },
   "dependencies":{
-    "mocha":"latest",
-    "should":"latest"
+    "mocha":"*",
+    "chai":"*"
   },
   "repository": {
     "type": "git",
