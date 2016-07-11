@@ -37,7 +37,6 @@ char_seperater = (string) ->
   for i , index in splitted_string
     total = total + i.length
     if index == 0
-      #test string "tobopomo('cl cl j06')"
       if tsi[i+string[i.length]] == undefined || tsi[i+string[i.length]][0].length > 1    #first element is first tone.
         if i.length == string.length      # no tone included and all the characters belong in first tone. 
           for j in [0...i.length]
@@ -46,7 +45,6 @@ char_seperater = (string) ->
               continue
             else if tsi[temp] && tsi[temp][0].length == 1 && j == (i.length - 1)
               output.push temp
-            #test string "tobopomo('co i ')"
             else if tsi[temp] == undefined && j == (i.length - 1)
               output.push i[traversed...j]
               output.push i[j]
@@ -58,10 +56,12 @@ char_seperater = (string) ->
             temp = i[traversed..j]
             if tsi[temp] && tsi[temp][0].length == 1 && j < (i.length - 1)
               continue
+            else if tsi[i[traversed .. i.length - 1]+string[index+i.length]] != undefined && tsi[i[traversed .. i.length - 1]+string[index+i.length]][0].length == 1
+              output.push i[traversed .. i.length - 1]+string[index+i.length]
+              break
             else if tsi[temp] && j == (i.length - 1)
               output.push i[traversed .. j] + string[index+i.length]
             else if tsi[temp] == undefined && j == (i.length - 1)
-            #test string "tobopomo('dk y3ru0 ')"
               output.push i[traversed...j]
               output.push i[j]+ string[index+i.length]
             else
@@ -87,7 +87,6 @@ char_seperater = (string) ->
           traversed = j
     else
       #test string "tobopomo('vul3cjo vu86')"
-      #test string "tobopomo('u su06')"
       if tsi[i+string[index+total]] == undefined    #last element of the splitted string but has tone symbol at the original string.
         temp = 0
         for j in [0...i.length]
