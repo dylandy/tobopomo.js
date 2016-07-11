@@ -115,6 +115,9 @@
               temp = i.slice(traversed, +j + 1 || 9e9);
               if (tsi[temp] && tsi[temp][0].length === 1 && j < (i.length - 1)) {
                 continue;
+              } else if (tsi[i.slice(traversed, +(i.length - 1) + 1 || 9e9) + string[index + i.length]] !== void 0 && tsi[i.slice(traversed, +(i.length - 1) + 1 || 9e9) + string[index + i.length]][0].length === 1) {
+                output.push(i.slice(traversed, +(i.length - 1) + 1 || 9e9) + string[index + i.length]);
+                break;
               } else if (tsi[temp] && j === (i.length - 1)) {
                 output.push(i.slice(traversed, +j + 1 || 9e9) + string[index + i.length]);
               } else if (tsi[temp] === void 0 && j === (i.length - 1)) {
