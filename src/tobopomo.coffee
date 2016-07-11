@@ -1,4 +1,4 @@
-tsi = require("./data/tsi.json")
+tsi = require("../data/tsi.json")
 
 root = global ? this
 layout =
