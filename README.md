@@ -27,7 +27,7 @@ In your package.json
 In your code
 
 ```
-require("tobopmo.js")
+require("tobopomo.js")
 ```
 
 ###Usage
