@@ -4,14 +4,50 @@
 
 Mapping the input string to bopomo script and then turn bopomo script into chinese characters.
 
-##使用方式
+###Installation
 
-###Include methods
+####Install Globally
 
-Node
 ```
-require("[path_to_script]/tobopomo.js")
+sudo npm install -g tobopomo.js
+```
 
+####Install Locally
+
+In your package.json 
+
+```
+...
+"dependencies" : {
+  "tobopomo.js":"*",
+},
+...
+```
+
+In your code
+
+```
+require("tobopmo.js")
+```
+###Command Line Tool
+
+You can use the command line tool for simple text search.
+
+###Usage
+
+```
+options:
+  -b : transfrom into Bopomo script
+  -k : transfrom into Chinese characters
+  -l : limit the output characters number
+```
+The example command
+
+```
+$tobopomo -b su3cl3a8  #[ 'ㄋㄧˇ', 'ㄏㄠˇ', 'ㄇㄚ' ]
+$tobopomo -k ㄨㄛˇ #[ '我', '捰', '婐', '婑' ]
+$tobopomo -b su3cl3a8 -k #[ [ '你好嗎', '妳好嗎' ] ]
+$tobopomo -b ji3 -k -l 2 #[ [ '我', '捰' ] ]
 ```
 
 ###Usage
@@ -28,7 +64,6 @@ tokanji("ㄋ一ˇㄏㄠˇㄇㄚ "); // [ [ '你好嗎', '妳好嗎' ] ]
 tokanji("ㄍㄨˇ"); // [ [ '股', '古', '谷', '鼓', '骨' ] ]  #default output 5 of characters
 
 tokanji("ㄍㄨˇ" , 3); // [ [ '股', '古', '谷' ] ] #if you want to change the output number just simply pass the number as second parameter. 
-
 ```
 2.You can call the methods by using strings itself.
 
@@ -52,7 +87,7 @@ tokanji("ㄍㄨˇ" , 3); // [ [ '股', '古', '谷' ] ] #if you want to change t
 - [x] 字重排比
 - [x] 限制輸出數量 
 - [ ] 不同語言實作
-- [ ] 建立成 node module 
+- [x] 建立成 node module 
 
 
 ##Credit
