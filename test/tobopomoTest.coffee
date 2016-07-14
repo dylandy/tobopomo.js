@@ -1,4 +1,4 @@
-require("../tobopomo") 
+require("../src/tobopomo") 
 #init expect
 expect = require("chai").expect 
 
