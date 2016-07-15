@@ -26,13 +26,11 @@ class Tobopomo
 
   char_seperater = (string) ->
     string = normalise(string)
-    #console.log string
     output = []
     total = 0
     traversed = 0
     temp = ""
     splitted_string = string.split(/["ˊ"|"ˇ"|"ˋ"|"˙"]/)
-    #console.log splitted_string
 
     for i , index in splitted_string
       total = total + i.length
@@ -70,7 +68,6 @@ class Tobopomo
 
         else if tsi[i+string[index+i.length]][0].length == 1
           output.push i+string[index+i.length]
-      #test string "tobopomo('ej94gj gj ')"
       else if string[index+total] == undefined  #last one is first tone 
         temp = 0
         for j in [0...i.length]
@@ -86,20 +83,23 @@ class Tobopomo
             output.push i[traversed...j]
             traversed = j
       else
-        #test string "tobopomo('vul3cjo vu86')"
         if tsi[i+string[index+total]] == undefined    #last element of the splitted string but has tone symbol at the original string.
           temp = 0
           for j in [0...i.length]
             temp = i[traversed..j]
             if tsi[temp] && tsi[temp][0].length == 1 && j < (i.length - 1)
               continue
+            else if tsi[temp+ string[index+total]] == undefined && j == (i.length - 1)
+              output.push i[traversed...j]
+              output.push i[j]+ string[index+total]
+            else if tsi[temp] == undefined && j == (i.length - 1)
+              output.push i[traversed...j]
+              output.push i[j]+ string[index+total]
             else if  j == (i.length - 1)
               output.push temp + string[index+total]
             else
               output.push i[traversed...j]
               traversed = j
-        #test string "tobopomo('ji3g4dk vm,6ej94bp6')"
-        #test string "tobopomo('ji3ap72. g4cl3q/6u.3')"
         else if tsi[i+string[index+total]][0].length > 1
           temp = 0
           for j in [0...i.length]
