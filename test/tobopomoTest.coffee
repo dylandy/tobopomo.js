@@ -15,6 +15,7 @@ describe "test bopomo script tranportation", ->
   case_seven = 'u su06'
   case_eight = 'u -4n0 n4j3xu.4fu 18 '
   case_nine = '5;32k6ep 284gj4u6u;4el '
+  case_ten = "5;32k6ep 284gj4u u;4el "
 
   it "first element first tone test", ->
     arrayEqual(tobopomo(case_one), ["ㄏㄠ","ㄏㄠ","ㄨㄢˊ"]).should.equal true
@@ -42,6 +43,9 @@ describe "test bopomo script tranportation", ->
 
   it "some null hide in long sentence", ->
     arrayEqual(tobopomo(case_nine) , [ 'ㄓㄤˇ', 'ㄉㄜˊ', 'ㄍㄣ', 'ㄉㄚˋ', 'ㄕㄨˋ', 'ㄧˊ', 'ㄧㄤˋ','ㄍㄠ' ]).should.equal true
+
+  it "some null hide in long sentence as well", ->
+    arrayEqual(tobopomo(case_ten) , [ 'ㄓㄤˇ', 'ㄉㄜˊ', 'ㄍㄣ', 'ㄉㄚˋ', 'ㄕㄨˋ', 'ㄧ', 'ㄧㄤˋ','ㄍㄠ' ]).should.equal true
 
 describe "test tokanji tranportation", ->
   case_one = ['ㄧ', 'ㄋㄧㄢˊ']
