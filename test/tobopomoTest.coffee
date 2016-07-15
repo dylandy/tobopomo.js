@@ -52,8 +52,7 @@ describe "test tokanji tranportation", ->
     arrayEqual(tokanji(case_two) , [[  '一', '醫', '依', '衣', '伊' ]] ).should.equal true
 
   it "limit number passes in should reduce and increase return output", ->
-    expect([]).to.be.empty
-    #expect(tokanji(case_two , 2)[0].length).to.be(2)
-    #expect(tokanji(case_two , 7)[0].length).to.be(7)
+    expect(tokanji(case_two , 2)[0].length).to.equal(2)
+    expect(tokanji(case_two , 7)[0].length).to.equal(7)
 
 
