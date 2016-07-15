@@ -79,6 +79,9 @@ class Tobopomo
           else if tsi[temp] == undefined && j == (i.length - 1)
             output.push i[traversed...j]
             output.push i[j]
+          else if j == 0 
+            #output.push i[traversed...j]
+            traversed = j
           else
             output.push i[traversed...j]
             traversed = j
