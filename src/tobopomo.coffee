@@ -21,108 +21,6 @@ class Tobopomo
   normalise = (string) ->
     string.replace(/ /g,'')
 
-  #the string reverse function
-  #reverse = (s) -> if s.length < 2 then s else reverse(s[1..-1]) + s[0]
-
-  char_seperater = (string) ->
-    string = normalise(string)
-    output = []
-    total = 0
-    traversed = 0
-    temp = ""
-    splitted_string = string.split(/["ˊ"|"ˇ"|"ˋ"|"˙"]/)
-
-    for i , index in splitted_string
-      total = total + i.length
-      if index == 0
-        if tsi[i+string[i.length]] == undefined || tsi[i+string[i.length]][0].length > 1    #first element is first tone.
-          if i.length == string.length      # no tone included and all the characters belong in first tone. 
-            for j in [0...i.length]
-              temp = i[traversed..j]
-              if tsi[temp] && tsi[temp][0].length == 1 && j < (i.length - 1)
-                continue
-              else if tsi[temp] && tsi[temp][0].length == 1 && j == (i.length - 1)
-                output.push temp
-              else if tsi[temp] == undefined && j == (i.length - 1)
-                output.push i[traversed...j]
-                output.push i[j]
-              else
-                output.push i[traversed...j]
-                traversed = j
-          else
-            for j in [0...i.length]
-              temp = i[traversed..j]
-              if tsi[temp] && tsi[temp][0].length == 1 && j < (i.length - 1)
-                continue
-              else if tsi[i[traversed .. i.length - 1]+string[index+i.length]] != undefined && tsi[i[traversed .. i.length - 1]+string[index+i.length]][0].length == 1
-                output.push i[traversed .. i.length - 1]+string[index+i.length]
-                break
-              else if tsi[temp] && j == (i.length - 1)
-                output.push i[traversed .. j] + string[index+i.length]
-              else if tsi[temp] == undefined && j == (i.length - 1)
-                output.push i[traversed...j]
-                output.push i[j]+ string[index+i.length]
-              else
-                output.push i[traversed...j]
-                traversed = j
-
-        else if tsi[i+string[index+i.length]][0].length == 1
-          output.push i+string[index+i.length]
-      else if string[index+total] == undefined  #last one is first tone 
-        temp = 0
-        for j in [0...i.length]
-          temp = i[traversed..j]
-          if tsi[temp] && tsi[temp][0].length == 1 && j < (i.length - 1)
-            continue
-          else if tsi[temp] && tsi[temp][0].length == 1 && j == (i.length - 1)
-            output.push i[traversed..j]
-          else if tsi[temp] == undefined && j == (i.length - 1)
-            output.push i[traversed...j]
-            output.push i[j]
-          else if j == 0
-            #output.push i[traversed...j]
-            traversed = j
-          else
-            output.push i[traversed...j]
-            traversed = j
-      else
-        if tsi[i+string[index+total]] == undefined    #last element of the splitted string but has tone symbol at the original string.
-          temp = 0
-          for j in [0...i.length]
-            temp = i[traversed..j]
-            if tsi[temp] && tsi[temp][0].length == 1 && j < (i.length - 1)
-              continue
-            else if tsi[temp+ string[index+total]] == undefined && j == (i.length - 1)
-              output.push i[traversed...j]
-              output.push i[j]+ string[index+total]
-            else if tsi[temp] == undefined && j == (i.length - 1)
-              output.push i[traversed...j]
-              output.push i[j]+ string[index+total]
-            else if  j == (i.length - 1)
-              output.push temp + string[index+total]
-            else
-              output.push i[traversed...j]
-              traversed = j
-        else if tsi[i+string[index+total]][0].length > 1
-          temp = 0
-          for j in [0...i.length]
-            temp = i[traversed..j]
-            if tsi[temp] && tsi[temp][0].length == 1 && j < (i.length - 1)
-              continue
-            else if tsi[temp] == undefined && j == (i.length - 1)
-              output.push i[traversed...j]
-              output.push i[j]+ string[index+total]
-            else if  j == (i.length - 1)
-              output.push i[traversed..j]+ string[index+total]
-            else if j == 0
-              traversed = j
-            else
-              output.push i[traversed...j]
-              traversed = j
-        else if tsi[i+string[index + total]][0].length == 1
-          output.push i+string[index+total]
-    return output
-
   root.tobopomo = (string) ->
     string = normalise(string)
     output = []
@@ -131,7 +29,9 @@ class Tobopomo
         output.push layout[(string[i].charCodeAt(0)).toString()]
       else
         output.push string[i]
-    return char_seperater(output.join(""))
+    output = output.join("").match(/([ㄅ-ㄙ])?([ㄧㄨㄩ])?([ㄚ-ㄦ])?([ˇˋˊ˙])?/g)
+    output.pop()
+    return output
 
   root.tokanji = (input , limit = 5) ->
     traversed = 0
@@ -161,5 +61,5 @@ class Tobopomo
   String::tokanji =(limit) -> tokanji(@ , limit)
   Array::tokanji =(limit) -> tokanji(@ , limit)
 
-module.exports = Tobopomo 
+module.exports = Tobopomo
   
