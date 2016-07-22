@@ -1,6 +1,6 @@
 {
   "name": "tobopomo.js",
-  "version": "1.1.3",
+  "version": "2.0.0",
   "description": "An api for mapping romanji to bopomo script and convert bopomo script to Chinese characters.",
   "main": "lib/tobopomo.js",
   "scripts": {
