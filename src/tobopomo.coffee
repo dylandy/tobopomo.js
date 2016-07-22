@@ -22,16 +22,25 @@ class Tobopomo
     string.replace(/ /g,'')
 
   root.tobopomo = (string) ->
-    string = normalise(string)
-    output = []
+    #string = normalise(string)
+    total = 0
+    temp = []
     for i in [0...string.length]
       if layout[(string[i].charCodeAt(0)).toString()]
-        output.push layout[(string[i].charCodeAt(0)).toString()]
+        temp.push layout[(string[i].charCodeAt(0)).toString()]
       else
-        output.push string[i]
-    output = output.join("").match(/([ㄅ-ㄙ])?([ㄧㄨㄩ])?([ㄚ-ㄦ])?([ˇˋˊ˙])?/g)
-    output.pop()
-    return output
+        temp.push string[i]
+    #console.log output
+    string = temp.join("")
+    #console.log string
+    splitted = temp.join("").split(/[ "ˇ""ˋ""ˊ""˙"]+/)
+    splitted = splitted.map((x, index) ->
+      total+=x.length
+      x = x+string[total+index]
+    )
+    splitted.pop()
+    splitted = splitted.map( (x) -> normalise(x) )
+    return splitted
 
   root.tokanji = (input , limit = 5) ->
     traversed = 0
