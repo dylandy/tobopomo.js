@@ -1,18 +1,18 @@
-#tobopomo.js
+# tobopomo.js
 
 將輸入的字串轉成對應的注音回傳；亦可將注音轉換成漢字
 
 Mapping the input string to bopomo script and then turn bopomo script into chinese characters.
 
-###Installation
+### Installation
 
-####Install Globally
+#### Install Globally
 
 ```
 sudo npm install -g tobopomo.js
 ```
 
-####Install Locally
+#### Install Locally
 
 In your package.json 
 
@@ -30,7 +30,7 @@ In your code
 require("tobopomo.js")
 ```
 
-###Usage
+### Usage
 
 This plugin provide two functions for you to trasform romaji to bopomo script or translate bopomo script to Chinese characters.
 There are two methods to using this plugin.
@@ -57,7 +57,7 @@ tokanji("ㄍㄨˇ" , 3); // [ [ '股', '古', '谷' ] ] #if you want to change t
 "ㄍㄨˇ".tokanji(3); // [ [ '股', '古', '谷'] ]  #pass the limit number as parameter into tokanji method in string mode.
 ```
 
-###Command Line Tool
+### Command Line Tool
 
 You can also use the command line tool for simple text search.
 
@@ -76,7 +76,7 @@ $tobopomo -b su3cl3a8 -k #[ [ '你好嗎', '妳好嗎' ] ]
 $tobopomo -b ji3 -k -l 2 #[ [ '我', '捰' ] ]
 ```
 
-###TODO
+### TODO
 
 - [x] 使用 crystal 加速資料分類
 - [x] String method 實作
@@ -88,9 +88,9 @@ $tobopomo -b ji3 -k -l 2 #[ [ '我', '捰' ] ]
 - [x] 建立成 node module 
 
 
-##Credit
+## Credit
 
 Thanks for chewing team and libchewing's help. Without them this project wouldn't be successed.
 
-##LICENSE
+## LICENSE
 This project is licensed under LGPL License. For furthor detail please checkout LICENSE.md or connect with me dylandy.chang at gmail.com.
